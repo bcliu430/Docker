@@ -17,8 +17,8 @@ then
 else
     for i in `seq $2 $3`; do
         echo " deleting $i"
-        docker stop $1$i ubuntu  ||true
-        docker rm   $1$i ubuntu  ||true
+        docker stop $1$i   ||true
+        docker rm   $1$i   ||true
     done
 
 fi

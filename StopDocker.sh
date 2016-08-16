@@ -16,7 +16,7 @@ then
 else
     for i in `seq $2 $3`; do
         echo " stoping $i"
-        docker stop $1$i ubuntu  ||true
+        docker stop $1$i  ||true
     done
 
 fi

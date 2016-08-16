@@ -2,23 +2,25 @@
 
 set -euo pipefail
 
-if [ "$#" -lt 3 ];then
+if [ "$#" -gt 3 ];then
     echo "Usage: $0 <prefix> <start> <stop>"
-    echo "ex: ./installDocker.sh docker 0 1"
+    echo "ex: ./StopDocker.sh docker 0 1"
+    echo "or: ./StopDocker.sh all"
     exit
 fi
 
+if [ $1 == "all" ] 
+then
+    docker stop $(docker ps -a -q) ||true
+    docker rm   $(docker ps -a -q) ||true
+
+else
     for i in `seq $2 $3`; do
-        echo " stop $i"
-        docker stop --name $1$i ubuntu /bin/bash || true
-        docker rm --name $1$i ubuntu /bin/bash || true
+        echo " deleting $i"
+        docker stop $1$i ubuntu  ||true
+        docker rm   $1$i ubuntu  ||true
+    done
 
-# docker stop $(docker ps -a -q)
-# stop all docker 
-# docker rm $(docker ps -a -q)
-# remove all
+fi
+
 docker ps -a
-
-#TODO
-# ADD stop all
-# ADD remove all

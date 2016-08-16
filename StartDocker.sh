@@ -2,17 +2,23 @@
 
 set -euo pipefail
 
-if [ "$#" -lt 3 ];then
+if [ "$#" -gt 3 ];then
     echo "Usage: $0 <prefix> <start> <stop>"
-    echo "ex: ./installDocker.sh docker 0 1"
+    echo "ex: ./StartDocker.sh docker 0 1"
+    echo "or: ./StartDocker.sh all"
     exit
 fi
 
-for i in `seq $2 $3`; do
-    echo " start $i"
-    docker start  $1$i || true
-done
-# docker start $(docker ps -a -q)
-# start all
+if [ $1 == "all" ] 
+then
+    docker start $(docker ps -a -q) ||true
+
+else
+    for i in `seq $2 $3`; do
+        echo " starting $i"
+        docker start $1$i ubuntu  ||true
+    done
+
+fi
 
 docker ps -a

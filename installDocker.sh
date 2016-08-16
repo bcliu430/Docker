@@ -10,7 +10,8 @@ fi
 
     for i in `seq $2 $3`; do
         echo " pass $i"
-        docker run --name $1$i ubuntu /bin/bash || true
+        docker create -i --name $1$i ubuntu /bin/bash || true
 
+done
 
 docker ps -a

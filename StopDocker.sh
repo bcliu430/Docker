@@ -10,7 +10,7 @@ fi
 
     for i in `seq $2 $3`; do
         echo " stop $i"
-        docker stop --name $1$i ubuntu /bin/bash || true
-
+        docker stop $1$i ubuntu  ||true
+done
 
 docker ps -a

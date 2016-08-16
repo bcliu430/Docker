@@ -8,10 +8,10 @@ if [ "$#" -lt 3 ];then
     exit
 fi
 
-    for i in `seq $2 $3`; do
-        echo " start $i"
-        docker start --name $1$i ubuntu /bin/bash || true
-
+for i in `seq $2 $3`; do
+    echo " start $i"
+    docker start  $1$i || true
+done
 # docker start $(docker ps -a -q)
 # start all
 

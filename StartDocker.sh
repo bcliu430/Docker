@@ -9,8 +9,10 @@ if [ "$#" -lt 3 ];then
 fi
 
     for i in `seq $2 $3`; do
-        echo " pass $i"
-        docker run --name $1$i ubuntu /bin/bash || true
+        echo " start $i"
+        docker start --name $1$i ubuntu /bin/bash || true
 
+# docker start $(docker ps -a -q)
+# start all
 
 docker ps -a

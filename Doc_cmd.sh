@@ -9,4 +9,4 @@ fi
 
 PID=$(docker inspect --format {{.State.Pid}} $1)
 
- nsenter --target $PID --mount --uts --ipc --net --pid     ${*:2} 2>&1 | sed "s/^/[$1] /"
+nsenter --target $PID --mount --uts --ipc --net --pid     ${*:2} 2>&1 | sed "s/^/[$1] /"

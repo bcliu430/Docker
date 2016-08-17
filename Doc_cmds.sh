@@ -1,4 +1,6 @@
-et -euo pipefail
+#!/bin/bash
+
+set -euo pipefail
 
 SCRIPT_RUN_SINGLE="/root/docker/Docker/Doc_cmd.sh"
 
